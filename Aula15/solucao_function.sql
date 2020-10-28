@@ -1,0 +1,12 @@
+USE emprestimos;
+
+DROP FUNCTION IF EXISTS total_saldos;
+
+DELIMITER //
+CREATE FUNCTION total_saldos() RETURNS DECIMAL(30, 2) READS SQL DATA
+BEGIN
+	DECLARE total DECIMAL(30, 2);
+    SELECT SUM(saldo) INTO total FROM usuario;
+    RETURN total;
+END//
+DELIMITER ;
